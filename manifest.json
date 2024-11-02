@@ -1,0 +1,16 @@
+{
+    "manifest_version": 3,
+    "name": "QueryFlip",
+    "version": "1.0",
+    "description": "Dynamic web search engine switcher",
+    "permissions": ["tabs"],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+          "matches": ["*://*.google.com/search*", "*://*.chatgpt.com/*q=*"],
+          "js": ["content.js"]
+        }
+    ]
+}
