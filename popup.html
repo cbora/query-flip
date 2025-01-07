@@ -1,13 +1,156 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>QueryFlip</title>
+<head>
+    <title>QueryFlip Settings</title>
     <style>
-      body { font-family: Arial, sans-serif; padding: 10px; }
+        html, body {
+            width: 320px;
+            height: 500px; /* Fixed height instead of min-height */
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: #f5f7fa;
+            /* Center the container both vertically and horizontally */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0; /* Remove padding to ensure true centering */
+            height: 100%; /* Take full height of html */
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 280px; /* Fixed width */
+            margin: 20px; /* Add margin instead of body padding */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        /* Rest of the styles remain the same */
+        h3 {
+            color: #2d3748;
+            margin: 0;
+            font-size: 24px;
+        }
+
+        p {
+            color: #4a5568;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .explanation {
+            font-size: 14px;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: left;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .example {
+            font-style: italic;
+            color: #718096;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+        }
+
+        label {
+            font-size: 14px;
+            color: #4a5568;
+            font-weight: 500;
+        }
+
+        input {
+            font-size: 16px;
+            width: 80px;
+            text-align: center;
+            padding: 8px;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #4299e1;
+        }
+
+        button {
+            background-color: #000000;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            font-weight: 500;
+            margin-top: 8px;
+        }
+
+        button:hover {
+            background-color: #333333;
+        }
+
+        #status {
+            color: #48bb78;
+            font-size: 14px;
+            display: none;
+            opacity: 1;
+            transition: opacity 0.3s ease-in-out;
+            margin-top: 8px;
+        }
+
+        .rule {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 4px 0;
+        }
     </style>
-  </head>
-  <body>
-    <h3>Dynamic Search</h3>
-    <p>Type your query and it will be directed to the best search engine.</p>
-  </body>
+</head>
+<body>
+    <div class="container">
+        <h3>QueryFlip</h3>
+        <p>Automatically choose between Google and ChatGPT based on your query length</p>
+        
+        <div class="explanation">
+            <strong>How it works:</strong><br>
+            <div class="rule">+ Shorter queries (below threshold) -> Google Search</div>
+            <div class="rule">+ Longer queries (at or above threshold) -> ChatGPT</div>
+            <div class="example">
+                Example with threshold set to 3 words:<br>
+                "weather today" -> Google<br>
+                "explain how photosynthesis works" -> ChatGPT
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label for="wordCount">Word Count Threshold</label>
+            <input type="number" id="wordCount" min="1" value="3" />
+            <button id="save">Save</button>
+        </div>
+        <p id="status">Saved successfully!</p>
+    </div>
+    <script src="popup.js"></script>
+</body>
 </html>
